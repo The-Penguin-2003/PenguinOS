@@ -1,0 +1,24 @@
+.PHONY: all clean install run
+
+all: kernel install
+
+install: kernel
+	mkdir -p iso/boot/grub
+	cp kernel.elf iso/boot/kernel.elf
+	cp grub.cfg iso/boot/grub/grub.cfg
+	grub-mkrescue -o PenguinOS.iso iso
+
+kernel: bootstrap.o link.ld kernel.o
+	i686-elf-ld -m elf_i386 -T link.ld -o kernel.elf bootstrap.o kernel.o
+
+%.o: src/%.c
+	i686-elf-gcc -Wall -m32 -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o $@ $<
+
+bootstrap.o: src/bootstrap.asm
+	nasm -f elf -o bootstrap.o src/bootstrap.asm
+
+run: PenguinOS.iso
+	qemu-system-i386 -cdrom PenguinOS.iso
+
+clean:
+	rm -rf iso *.o kernel.elf *.iso
