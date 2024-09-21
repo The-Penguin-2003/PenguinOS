@@ -2,6 +2,7 @@
 #include <vga.h>
 #include <gdt.h>
 #include <kprintf.h>
+#include <idt.h>
 
 int32_t kernel_main()
 {
@@ -19,7 +20,7 @@ int32_t kernel_main()
 
 	set_text_color(10, 0);
 	init_gdt();
-	puts("GDT Initialized!\r\n");
+	init_idt();
 	set_text_color(15, 0);
 
 	for (;;);
