@@ -1,6 +1,7 @@
 /* PenguinOS Global Descriptor Table (GDT) Driver */
 
 #include <gdt.h>
+#include <kprintf.h>
 
 struct gdt_entry gdt[3];
 struct gdt_ptr gp;
@@ -30,4 +31,6 @@ void init_gdt()
 	gdt_set_gate(2, 0, 0xFFFFFFFF, 0x92, 0xCF);
 
 	gdt_flush();
+
+	kprintf("[KERNEL] GDT Gates Set (Ring 0) -> GDT=0x%x\n", (uint32_t)&gdt);
 }

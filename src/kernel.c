@@ -1,6 +1,7 @@
 /* PenguinOS Kernel */
 #include <vga.h>
 #include <gdt.h>
+#include <kprintf.h>
 
 int32_t kernel_main()
 {
@@ -16,8 +17,8 @@ int32_t kernel_main()
 	}
 	puts("\r\n");
 
-	init_gdt();
 	set_text_color(10, 0);
+	init_gdt();
 	puts("GDT Initialized!\r\n");
 	set_text_color(15, 0);
 
