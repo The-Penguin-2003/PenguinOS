@@ -26,6 +26,8 @@ int32_t kernel_main()
 	init_idt();
 	init_isrs();
 	init_irq();
+
+	__asm__ __volatile__("sti");
 	set_text_color(15, 0);
 
 	for (;;);
