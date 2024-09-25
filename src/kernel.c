@@ -4,6 +4,8 @@
 #include <kprintf.h>
 #include <idt.h>
 #include <isrs.h>
+#include <irq.h>
+#include <syscall.h>
 
 int32_t kernel_main()
 {
@@ -23,6 +25,7 @@ int32_t kernel_main()
 	init_gdt();
 	init_idt();
 	init_isrs();
+	init_irq();
 	set_text_color(15, 0);
 
 	for (;;);
