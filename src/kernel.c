@@ -3,6 +3,7 @@
 #include <gdt.h>
 #include <kprintf.h>
 #include <idt.h>
+#include <isrs.h>
 
 int32_t kernel_main()
 {
@@ -21,6 +22,7 @@ int32_t kernel_main()
 	set_text_color(10, 0);
 	init_gdt();
 	init_idt();
+	init_isrs();
 	set_text_color(15, 0);
 
 	for (;;);
