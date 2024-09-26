@@ -6,6 +6,7 @@
 #include <isrs.h>
 #include <irq.h>
 #include <syscall.h>
+#include <heap.h>
 
 int32_t kernel_main()
 {
@@ -28,6 +29,17 @@ int32_t kernel_main()
 	init_irq();
 
 	__asm__ __volatile__("sti");
+
+	init_heap();
+	
+	void* ptr1 = malloc(256);
+	void* ptr2 = malloc(512);
+	set_text_color(11, 0);
+	kprintf("[DEBUG] malloc() test -> ptr1=0x%x, ptr2=0x%x\r\n", (uint32_t)ptr1, (uint32_t)ptr2);
+	set_text_color(10, 0);
+	free(ptr1);
+	free(ptr2);
+
 	set_text_color(15, 0);
 
 	for (;;);
