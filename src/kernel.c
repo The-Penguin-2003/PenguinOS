@@ -7,6 +7,7 @@
 #include <irq.h>
 #include <syscall.h>
 #include <heap.h>
+#include <timer.h>
 
 int32_t kernel_main()
 {
@@ -39,6 +40,8 @@ int32_t kernel_main()
 	set_text_color(10, 0);
 	free(ptr1);
 	free(ptr2);
+
+	init_timer();
 
 	set_text_color(15, 0);
 
