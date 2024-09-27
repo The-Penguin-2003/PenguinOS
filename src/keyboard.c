@@ -63,9 +63,15 @@ void keyboard_handler()
 			int8_t c;
 
 			if (shift_pressed)
-				c = us_kbd_shift[scancode];
+			{
+				c = us_kbd_shift[scancode]; 
+				kprintf("%c", c);
+			}
 			else
-				c = us_kbd[scancode];
+			{
+				c = us_kbd[scancode]; 
+				kprintf("%c", c);
+			}
 
 			if (c)
 			{
