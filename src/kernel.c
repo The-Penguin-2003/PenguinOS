@@ -8,6 +8,7 @@
 #include <syscall.h>
 #include <heap.h>
 #include <timer.h>
+#include <keyboard.h>
 
 int32_t kernel_main()
 {
@@ -42,6 +43,7 @@ int32_t kernel_main()
 	free(ptr2);
 
 	init_timer();
+	init_keyboard();
 
 	set_text_color(15, 0);
 
