@@ -9,6 +9,7 @@
 #include <heap.h>
 #include <timer.h>
 #include <keyboard.h>
+#include <rtc.h>
 
 int32_t kernel_main()
 {
@@ -23,6 +24,13 @@ int32_t kernel_main()
 		putc(' ');
 	}
 	puts("\r\n");
+
+	set_text_color(15, 0);
+
+	rtc_time_t time;
+	rtc_read_time(&time);
+	puts("[TIME] RTC Time At Boot: ");
+	print_time(&time);
 
 	set_text_color(10, 0);
 	init_gdt();
