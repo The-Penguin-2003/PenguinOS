@@ -10,6 +10,7 @@
 #include <timer.h>
 #include <keyboard.h>
 #include <rtc.h>
+#include <pci.h>
 
 int32_t kernel_main()
 {
@@ -52,6 +53,9 @@ int32_t kernel_main()
 
 	init_timer();
 	init_keyboard();
+
+	set_text_color(7, 0);
+	scan_pci_bus();
 
 	set_text_color(15, 0);
 
