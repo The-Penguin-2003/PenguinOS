@@ -105,7 +105,8 @@ void scan_pci_bus()
 							break;
 					}
 
-					kprintf("[PCI] Device Found -> %s %s\r\n", vendor_string, device_string);
+					kprintf("[PCI] Device Found -> Vendor=0x%x, Device=0x%x\r\n", dev.vendor_id, dev.device_id);
+					kprintf("[PCI] Device Found -> %s %s\r\n\r\n", vendor_string, device_string);
 				}
 			}
 		}
