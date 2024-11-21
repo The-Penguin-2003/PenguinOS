@@ -13,4 +13,12 @@ typedef unsigned int uint32_t;
 typedef long long int64_t;
 typedef unsigned long long uint64_t;
 
+typedef int8_t bool;
+
+#define TRUE 1
+#define FALSE 0
+
+#define INT32_MAX 0x7FFFFFFFL
+#define INT32_MIN (-INT32_MAX - 1L)
+
 #endif /* __TYPES_H__ */
