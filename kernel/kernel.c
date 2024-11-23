@@ -3,6 +3,7 @@
 #include <kprintf.h>
 #include <serial.h>
 #include <gdt.h>
+#include <idt.h>
 
 void print_ok_msg(uint8_t* msg) {
     set_text_color(0xF, 0x0);
@@ -26,6 +27,9 @@ int kernel_main() {
 
     init_gdt();
     print_ok_msg((uint8_t*)"GDT Initialized\r\n");
+
+    init_idt();
+    print_ok_msg((uint8_t*)"IDT Initialized\r\n");
 
     kprintf((uint8_t*)"\r\nWelcome to ");
     set_text_color(0xE, 0x0);
