@@ -8,8 +8,8 @@ install: kernel
 	cp grub.cfg iso/boot/grub/grub.cfg
 	grub-mkrescue -o PenguinOS.iso iso
 
-kernel: boot/bootstrap.o link.ld kernel/kernel.o kernel/io.o kernel/mem.o kernel/str.o drivers/vga.o kernel/kprintf.o
-	i686-elf-ld -m elf_i386 -T link.ld -o kernel.bin boot/bootstrap.o kernel/kernel.o kernel/io.o kernel/mem.o kernel/str.o drivers/vga.o kernel/kprintf.o
+kernel: boot/bootstrap.o link.ld kernel/kernel.o kernel/io.o kernel/mem.o kernel/str.o drivers/vga.o kernel/kprintf.o drivers/serial.o
+	i686-elf-ld -m elf_i386 -T link.ld -o kernel.bin boot/bootstrap.o kernel/kernel.o kernel/io.o kernel/mem.o kernel/str.o drivers/vga.o kernel/kprintf.o drivers/serial.o
 
 kernel/%.o: kernel/%.c
 	i686-elf-gcc -Wall -m32 -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -Wno-incompatible-pointer-types -Wno-discarded-qualifiers -c -o $@ $<
