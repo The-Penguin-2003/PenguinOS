@@ -5,6 +5,7 @@
 #include <gdt.h>
 #include <idt.h>
 #include <isrs.h>
+#include <irqs.h>
 
 void print_ok_msg(uint8_t* msg) {
     set_text_color(0xF, 0x0);
@@ -34,6 +35,9 @@ int kernel_main() {
 
     init_isrs();
     print_ok_msg((uint8_t*)"ISRS Initialized\r\n");
+
+    init_irqs();
+    print_ok_msg((uint8_t*)"IRQS Initialized\r\n");
 
     kprintf((uint8_t*)"\r\nWelcome to ");
     set_text_color(0xE, 0x0);
