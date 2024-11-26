@@ -21,6 +21,8 @@ extern void irq13();
 extern void irq14();
 extern void irq15();
 
+extern void syscall_common_stub();
+
 void* irq_routines[16] = {
   0, 0, 0, 0, 0, 0, 0, 0,
 0, 0, 0, 0, 0, 0, 0, 0
@@ -66,6 +68,8 @@ void init_irqs() {
     idt_set_gate(45, (unsigned)irq13, 0x08, 0x8E);
     idt_set_gate(46, (unsigned)irq14, 0x08, 0x8E);
     idt_set_gate(47, (unsigned)irq15, 0x08, 0x8E);
+
+    idt_set_gate(0x80, (unsigned long)syscall_common_stub, 0x08, 0x8E);
 }
 
 void irq_handler(struct regs* r) {
