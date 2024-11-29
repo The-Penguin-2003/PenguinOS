@@ -15,6 +15,10 @@ typedef unsigned long long uint64_t;
 
 typedef int8_t bool;
 
+typedef int32_t size_t;
+
+#define NULL ((void*)0)
+
 #define TRUE 1
 #define FALSE 0
 

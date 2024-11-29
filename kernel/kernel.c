@@ -7,6 +7,7 @@
 #include <isrs.h>
 #include <irqs.h>
 #include <syscalls.h>
+#include <heap.h>
 
 void print_ok_msg(uint8_t* msg) {
     set_text_color(0xF, 0x0);
@@ -40,6 +41,11 @@ int kernel_main() {
     init_irqs();
     print_ok_msg((uint8_t*)"IRQS Initialized\r\n");
     print_ok_msg((uint8_t*)"Syscall Infrastructure Initialized\r\n");
+
+    __asm__ __volatile__("sti");
+
+    init_heap();
+    print_ok_msg((uint8_t*)"Heap Memory Initialized\r\n");
 
     kprintf((uint8_t*)"\r\nWelcome to ");
     set_text_color(0xE, 0x0);
