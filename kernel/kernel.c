@@ -8,6 +8,7 @@
 #include <irqs.h>
 #include <syscalls.h>
 #include <heap.h>
+#include <timer.h>
 
 void print_ok_msg(uint8_t* msg) {
     set_text_color(0xF, 0x0);
@@ -46,6 +47,9 @@ int kernel_main() {
 
     init_heap();
     print_ok_msg((uint8_t*)"Heap Memory Initialized\r\n");
+
+    init_timer();
+    print_ok_msg((uint8_t*)"Programmable Interval Timer Initialized\r\n");
 
     kprintf((uint8_t*)"\r\nWelcome to ");
     set_text_color(0xE, 0x0);
