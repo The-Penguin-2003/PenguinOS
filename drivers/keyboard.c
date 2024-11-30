@@ -87,11 +87,9 @@ void keyboard_handler() {
 
             if (shift_pressed) {
                 c = keyboard_us_shift[scancode];
-                kprintf((uint8_t*)"%c", c);
             }
             else {
                 c = keyboard_us[scancode];
-                kprintf((uint8_t*)"%c", c);
             }
 
             if (c) {

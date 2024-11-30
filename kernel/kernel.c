@@ -10,6 +10,7 @@
 #include <heap.h>
 #include <timer.h>
 #include <keyboard.h>
+#include <shell.h>
 
 void print_ok_msg(uint8_t* msg) {
     set_text_color(0xF, 0x0);
@@ -55,12 +56,15 @@ int kernel_main() {
     init_keyboard();
     print_ok_msg((uint8_t*)"Keyboard Initialized\r\n");
 
+    kprintf((uint8_t*)"\r\nInitializing shell...");
+
     kprintf((uint8_t*)"\r\nWelcome to ");
     set_text_color(0xE, 0x0);
     kprintf((uint8_t*)"PenguinOS");
     set_text_color(0xF, 0x0);
     kprintf((uint8_t*)"!\r\n");
 
-    for (;;);
+    init_shell();
+
     return 0;
 }
