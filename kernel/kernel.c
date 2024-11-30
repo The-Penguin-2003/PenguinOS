@@ -25,7 +25,7 @@ void print_ok_msg(uint8_t* msg) {
     kprintf((uint8_t*)"%s", msg);
 }
 
-int kernel_main() {
+void kernel_main() {
     init_vga();
     print_ok_msg((uint8_t*)"VGA Initialized\r\n");
 
@@ -45,7 +45,7 @@ int kernel_main() {
     print_ok_msg((uint8_t*)"IRQS Initialized\r\n");
     print_ok_msg((uint8_t*)"Syscall Infrastructure Initialized\r\n");
 
-    __asm__ __volatile__("sti");
+    asm volatile("sti");
 
     init_heap();
     print_ok_msg((uint8_t*)"Heap Memory Initialized\r\n");
@@ -65,6 +65,4 @@ int kernel_main() {
     kprintf((uint8_t*)"!\r\n");
 
     init_shell();
-
-    return 0;
 }

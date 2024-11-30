@@ -14,5 +14,7 @@ uint8_t keyboard_getchar();
 int32_t keyboard_has_input();
 uint8_t keyboard_getchar_non_blocking();
 void init_keyboard();
+int32_t getch();
+void get_input(uint8_t* buffer, int32_t size);
 
 #endif /* __KEYBOARD_H__ */

@@ -1,6 +1,6 @@
 /* PenguinOS Keyboard Driver */
 #include <io.h>
-#include <kprintf.h>
+#include <vga.h>
 #include <irqs.h>
 #include <keyboard.h>
 
@@ -66,9 +66,9 @@ uint8_t keyboard_us_shift[128] = {
     0
 };
 
-static uint8_t keyboard_buffer[KEYBOARD_BUFFER_SIZE];
-static uint32_t keyboard_buffer_start = 0;
-static uint32_t keyboard_buffer_end = 0;
+volatile uint8_t keyboard_buffer[KEYBOARD_BUFFER_SIZE];
+volatile uint32_t keyboard_buffer_start = 0;
+volatile uint32_t keyboard_buffer_end = 0;
 static int32_t shift_pressed = 0;
 
 void keyboard_handler() {
@@ -126,4 +126,34 @@ uint8_t keyboard_getchar_non_blocking() {
     }
 
     return 0;
+}
+
+int32_t getch() {
+    return keyboard_getchar();
+}
+
+void get_input(uint8_t* buffer, int32_t size) {
+    int32_t index = 0;
+    uint8_t c;
+
+    while (index < size - 1) {
+        c = getch();
+
+        if (c == '\n')
+            break;
+        else if (c == '\b') {
+            if (index > 0) {
+                index--;
+                putc((uint8_t)'\b');
+                putc((uint8_t)' ');
+                putc((uint8_t)'\b');
+            }
+        }
+        else {
+            buffer[index++] = c;
+            putc(c);
+        }
+    }
+
+    buffer[index] = '\0';
 }
