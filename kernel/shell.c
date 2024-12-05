@@ -49,6 +49,7 @@ int32_t parse_input(uint8_t* input, uint8_t* argv[], int32_t max_args) {
 void init_shell() {
     register_cmd((uint8_t*)"echo", echo_cmd);
     register_cmd((uint8_t*)"clear", clear_cmd);
+    register_cmd((uint8_t*)"reboot", reboot_cmd);
 
     for (;;) {
         uint8_t input_buffer[BUFFER_SIZE];
