@@ -6,5 +6,6 @@
 void echo_cmd();
 void clear_cmd();
 void reboot_cmd();
+void help_cmd();
 
 #endif /* __COMMANDS_H__ */

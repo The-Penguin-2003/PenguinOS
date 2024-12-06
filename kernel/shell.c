@@ -50,6 +50,7 @@ void init_shell() {
     register_cmd((uint8_t*)"echo", echo_cmd);
     register_cmd((uint8_t*)"clear", clear_cmd);
     register_cmd((uint8_t*)"reboot", reboot_cmd);
+    register_cmd((uint8_t*)"help", help_cmd);
 
     for (;;) {
         uint8_t input_buffer[BUFFER_SIZE];
